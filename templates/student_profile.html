@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ student.name }}</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+
+<body class="page-bg">
+
+<div class="profile-container">
+
+    <div class="profile-card large-card">
+{% if student.photo %}
+    <img src="{{ student.photo.url }}" class="profile-img">
+{% else %}
+    <img src="/static/images/default-avatar.png" class="profile-img">
+{% endif %}
+
+        <h2>{{ student.name }}</h2>
+        <p>الجنس: {{ student.gender }}</p>
+        <p>تاريخ الميلاد: {{ student.date_of_birth }}</p>
+        <p>الحالة: {{ student.status }}</p>
+
+        <div class="grade-circle">
+            {{ student.total_grade }}%
+        </div>
+    </div>
+
+</div>
+
+<h3 class="section-title">📊 نتائج الامتحانات</h3>
+
+<table class="results-table">
+    <tr>
+        <th>المادة</th>
+        <th>الدرجة</th>
+        <th>التاريخ</th>
+    </tr>
+    {% for r in results %}
+    <tr>
+        <td>{{ r.subject }}</td>
+        <td>{{ r.score }} / {{ r.max_score }}</td>
+        <td>{{ r.date }}</td>
+    </tr>
+    {% empty %}
+    <tr><td colspan="3">لا توجد نتائج بعد</td></tr>
+    {% endfor %}
+</table>
+
+<h3 class="section-title">📅 الحضور</h3>
+
+<table class="results-table">
+    <tr>
+        <th>التاريخ</th>
+        <th>الحالة</th>
+    </tr>
+    {% for a in attendance %}
+    <tr>
+        <td>{{ a.date }}</td>
+        <td>
+            {% if a.present %}
+                ✅ حاضر
+            {% else %}
+                ❌ غائب
+            {% endif %}
+        </td>
+    </tr>
+    {% empty %}
+    <tr><td colspan="2">لا توجد بيانات حضور</td></tr>
+    {% endfor %}
+</table>
+
+<div class="profile-actions">
+    <a href="/students/" class="glass-btn small-btn">⬅ رجوع للطلاب</a>
+    <a href="/home/" class="glass-btn small-btn">🏠 الرئيسية</a>
+</div>
+
+</body>
+</html>
