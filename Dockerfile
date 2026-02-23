@@ -20,7 +20,7 @@ RUN pip install --no-cache-dir -r requirements.txt
 COPY . /code/
 
 # Create persistent data directory for SQLite
-RUN mkdir -p /code/data
+
 
 # Collect static files for WhiteNoise
 RUN python manage.py collectstatic --noinput
