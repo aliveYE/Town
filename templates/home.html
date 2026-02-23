@@ -6,20 +6,17 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>{% trans "مدرسة التعاون النموذجية" %}</title>
 
-  <!-- CSS -->
   <link rel="stylesheet" href="{% static 'css/style.css' %}">
 </head>
 
 <body>
 
-  <!-- Hero Section -->
-  <header class="hero hero-bg">
+  <header class="hero hero-bg" style="background-image: url('{% static "images/school.jpg" %}');">
 
     <div class="hero-overlay"></div>
 
     <div class="hero-content">
 
-      <!-- Image -->
       <img src="{% static 'images/school.jpg' %}" class="school-img" alt="{% trans 'صورة المدرسة' %}">
 
       <h1 class="hero-title">
@@ -30,9 +27,8 @@
         {% trans "العلم نور والجهل ظلام" %}
       </p>
 
-      <!-- Navigation Buttons -->
       <nav class="menu-buttons" aria-label="{% trans 'القائمة الرئيسية' %}">
-        <a href="{% url 'gradeboard' %}" class="glass-btn">📊 {% trans "لوحة الصف" %}</a>
+        <a href="{% url 'grade_dashboard' %}" class="glass-btn">📊 {% trans "لوحة الصف" %}</a>
         <a href="{% url 'students' %}" class="glass-btn">👨‍🎓 {% trans "الطلاب" %}</a>
         <a href="{% url 'lessons' %}" class="glass-btn">📚 {% trans "الدروس" %}</a>
         <a href="{% url 'add_student' %}" class="glass-btn">➕ {% trans "إضافة طالب" %}</a>
