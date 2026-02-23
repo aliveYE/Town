@@ -1,28 +1,29 @@
+{% load static i18n %}
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <title>طلاب الصف السادس</title>
-    <link rel="stylesheet" href="/static/css/style.css">
+    <title>{% trans "طلاب الصف السادس" %}</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
 </head>
 
 <body class="page-bg">
 
-<h1 class="page-title">👨‍🎓 طلاب الصف السادس الابتدائي</h1>
+<h1 class="page-title">👨‍🎓 {% trans "طلاب الصف السادس الابتدائي" %}</h1>
 
 <div class="top-actions">
-    <a href="/add-student/" class="glass-btn small-btn">➕ إضافة طالب</a>
-    <a href="/grade/" class="glass-btn small-btn">📊 لوحة الصف</a>
+    <a href="{% url 'add_student' %}" class="glass-btn small-btn">➕ {% trans "إضافة طالب" %}</a>
+    <a href="{% url 'gradeboard' %}" class="glass-btn small-btn">📊 {% trans "لوحة الصف" %}</a>
 </div>
 
 <form method="get" class="search-bar">
-    <input type="text" name="q" placeholder="🔎 البحث عن اسم الطالب..." value="{{ request.GET.q }}">
-    <button type="submit">بحث</button>
+    <input type="text" name="q" placeholder="🔎 {% trans 'البحث عن اسم الطالب...' %}" value="{{ request.GET.q }}">
+    <button type="submit">{% trans "بحث" %}</button>
 </form>
 
 <div class="student-list">
     {% for student in students %}
-        <a href="/student/{{ student.id }}/" class="student-card">
+        <a href="{% url 'student_profile' student.id %}" class="student-card">
             <div class="student-info">
                 <span class="student-name">{{ student.name }}</span>
                 <span class="student-status">{{ student.status }}</span>
@@ -33,11 +34,11 @@
             </div>
         </a>
     {% empty %}
-        <p style="text-align:center;">لا يوجد طلاب</p>
+        <p style="text-align:center;">{% trans "لا يوجد طلاب" %}</p>
     {% endfor %}
 </div>
 
-<a href="/home/" class="back-btn">⬅ العودة إلى الرئيسية</a>
+<a href="{% url 'home' %}" class="back-btn">⬅ {% trans "العودة إلى الرئيسية" %}</a>
 
 </body>
 </html>
