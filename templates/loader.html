@@ -1,11 +1,15 @@
+{% load static i18n %}
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <title>مدرسة التعاون | جارٍ التحميل</title>
+    <title>{% trans "مدرسة التعاون | جارٍ التحميل" %}</title>
 
-    <meta http-equiv="refresh" content="3;url=/home/">
-    <link rel="stylesheet" href="/static/css/style.css">
+    <!-- Redirect to home after 3 seconds -->
+    <meta http-equiv="refresh" content="3;url={% url 'home' %}">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
 </head>
 
 <body class="loader-body">
@@ -16,14 +20,14 @@
         🏫
     </div>
 
-    <h1 class="loader-title">مدرسة التعاون النموذجية</h1>
-    <p class="loader-sub">نبني جيل المستقبل بالعلم والمعرفة</p>
+    <h1 class="loader-title">{% trans "مدرسة التعاون النموذجية" %}</h1>
+    <p class="loader-sub">{% trans "نبني جيل المستقبل بالعلم والمعرفة" %}</p>
 
     <div class="progress-bar">
         <div class="progress-fill"></div>
     </div>
 
-    <p class="loading-text">جارٍ تجهيز بيئة التعلّم...</p>
+    <p class="loading-text">{% trans "جارٍ تجهيز بيئة التعلّم..." %}</p>
 
 </div>
 
