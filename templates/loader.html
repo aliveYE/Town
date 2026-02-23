@@ -4,32 +4,25 @@
 <head>
     <meta charset="UTF-8">
     <title>{% trans "مدرسة التعاون | جارٍ التحميل" %}</title>
-
-    <!-- Redirect to home after 3 seconds -->
     <meta http-equiv="refresh" content="3;url={% url 'home' %}">
-
-    <!-- CSS -->
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
 </head>
 
 <body class="loader-body">
-
-<div class="loader-container">
-
-    <div class="school-emblem">
-        🏫
+    <div class="loader-container">
+        <div class="school-emblem">🏫</div>
+        <h1 class="loader-title">{% trans "مدرسة التعاون النموذجية" %}</h1>
+        <p class="loader-sub">{% trans "نبني جيل المستقبل بالعلم والمعرفة" %}</p>
+        <div class="progress-bar">
+            <div class="progress-fill"></div>
+        </div>
+        <p class="loading-text">{% trans "جارٍ تجهيز بيئة التعلّم..." %}</p>
     </div>
 
-    <h1 class="loader-title">{% trans "مدرسة التعاون النموذجية" %}</h1>
-    <p class="loader-sub">{% trans "نبني جيل المستقبل بالعلم والمعرفة" %}</p>
-
-    <div class="progress-bar">
-        <div class="progress-fill"></div>
-    </div>
-
-    <p class="loading-text">{% trans "جارٍ تجهيز بيئة التعلّم..." %}</p>
-
-</div>
-
+    <script>
+        setTimeout(function(){
+            window.location.href = "{% url 'home' %}";
+        }, 3500);
+    </script>
 </body>
 </html>
