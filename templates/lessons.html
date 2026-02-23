@@ -3,39 +3,38 @@
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% trans "الدروس" %}</title>
 
-    <!-- CSS -->
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
 </head>
 
 <body class="page-bg">
 
-<h1 class="page-title">📘 {% trans "دروس اليوم" %}</h1>
+<main class="container">
+    <h1 class="page-title">📘 {% trans "دروس اليوم" %}</h1>
 
-<div class="lesson-diagram">
+    <div class="stats-grid"> {% for lesson in lessons %}
+            <div class="stat-card"> <h2 class="glow-text">{{ lesson.title }}</h2>
+                <p style="font-size: 1.2rem; color: var(--text-main); margin: 10px 0;">
+                    {{ lesson.description|default:"" }}
+                </p>
+                <div class="student-status" style="justify-content: center; margin-top: 15px;">
+                    <span>👨‍🏫 {{ lesson.teacher_name|default:_("مدرس المادة") }}</span>
+                </div>
+            </div>
+        {% empty %}
+            <div class="glass-panel" style="grid-column: 1 / -1; text-align: center;">
+                <p>{% trans "لا توجد دروس مجدولة اليوم." %}</p>
+            </div>
+        {% endfor %}
 
-    <div class="lesson-card">
-        <h2>{% trans "الرياضيات" %}</h2>
-        <p>{% trans "الكسور العشرية" %}</p>
-        <span>👨‍🏫 {% trans "أ. محمد عبدالله" %}</span>
     </div>
 
-    <div class="lesson-card">
-        <h2>{% trans "العلوم" %}</h2>
-        <p>{% trans "الجهاز الهضمي" %}</p>
-        <span>👩‍🏫 {% trans "أ. سمية أحمد" %}</span>
+    <div style="text-align: center; margin-top: 50px;">
+        <a href="{% url 'home' %}" class="glass-btn small-btn">⬅ {% trans "العودة للرئيسية" %}</a>
     </div>
-
-    <div class="lesson-card">
-        <h2>{% trans "اللغة العربية" %}</h2>
-        <p>{% trans "الفعل وأنواعه" %}</p>
-        <span>👨‍🏫 {% trans "أ. خالد علي" %}</span>
-    </div>
-
-</div>
-
-<a href="{% url 'home' %}" class="back-btn">⬅ {% trans "العودة للرئيسية" %}</a>
+</main>
 
 </body>
 </html>
