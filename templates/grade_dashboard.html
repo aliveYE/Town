@@ -3,9 +3,9 @@
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% trans "لوحة الصف" %}</title>
 
-    <!-- CSS -->
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
 </head>
 
@@ -14,10 +14,12 @@
 <aside class="sidebar">
     <h2>🏫 {% trans "التعاون" %}</h2>
 
-    <a href="{% url 'home' %}">🏠 {% trans "الرئيسية" %}</a>
-    <a href="{% url 'students' %}">👨‍🎓 {% trans "الطلاب" %}</a>
-    <a href="{% url 'lessons' %}">📚 {% trans "الدروس" %}</a>
-    <a href="{% url 'add_student' %}">➕ {% trans "إضافة طالب" %}</a>
+    <a href="{% url 'home' %}"><span>🏠</span> {% trans "الرئيسية" %}</a>
+    <a href="{% url 'students' %}"><span>👨‍🎓</span> {% trans "الطلاب" %}</a>
+    <a href="{% url 'lessons' %}"><span>📚</span> {% trans "الدروس" %}</a>
+    <a href="{% url 'add_student' %}"><span>➕</span> {% trans "إضافة طالب" %}</a>
+    
+    <a href="{% url 'grade_dashboard' %}" class="active"><span>📊</span> {% trans "لوحة الصف" %}</a>
 </aside>
 
 <main class="dashboard-content">
@@ -27,20 +29,28 @@
     <div class="stats-grid">
 
         <div class="stat-card">
-            <h3>👨‍🎓 {% trans "عدد الطلاب" %}</h3>
-            <p>{{ students_count|default:"0" }}</p>
+            <h3>{% trans "عدد الطلاب" %}</h3>
+            <p>{{ student_count|default:"0" }}</p>
         </div>
 
         <div class="stat-card">
-            <h3>📚 {% trans "دروس اليوم" %}</h3>
-            <p>{{ lessons_today|default:"0" }}</p>
+            <h3>{% trans "دروس اليوم" %}</h3>
+            <p>{{ lesson_count|default:"0" }}</p>
         </div>
 
         <div class="stat-card">
-            <h3>📈 {% trans "نسبة الحضور" %}</h3>
-            <p>{{ attendance_rate|default:"0%" }}</p>
+            <h3>{% trans "نسبة الحضور" %}</h3>
+            <p>{{ attendance_percent|default:"0" }}%</p>
         </div>
 
+    </div>
+
+    <div class="glass-panel" style="margin-top: 40px;">
+        <h3 class="glow-text" style="margin-bottom: 20px;">⚡ {% trans "إجراءات سريعة" %}</h3>
+        <div style="display: flex; gap: 15px; flex-wrap: wrap;">
+            <a href="{% url 'add_student' %}" class="glass-btn small-btn">{% trans "تسجيل طالب جديد" %}</a>
+            <button onclick="window.print()" class="glass-btn small-btn">{% trans "طباعة التقارير" %}</button>
+        </div>
     </div>
 
 </main>
