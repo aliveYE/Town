@@ -10,45 +10,43 @@
 
 <body class="page-bg">
 
-<main class="container">
-    <h1 class="page-title">👨‍🎓 {% trans "طلاب الصف السادس الابتدائي" %}</h1>
+    <main class="container">
+        <h1 class="page-title">👨‍🎓 {% trans "طلاب الصف السادس الابتدائي" %}</h1>
 
-    <div class="top-actions">
-        <a href="{% url 'add_student' %}" class="glass-btn small-btn">➕ {% trans "إضافة طالب" %}</a>
-        <a href="{% url 'grade_dashboard' %}" class="glass-btn small-btn">📊 {% trans "لوحة الصف" %}</a>
-    </div>
+        <div class="top-actions">
+            <a href="{% url 'add_student' %}" class="glass-btn small-btn">➕ {% trans "إضافة طالب" %}</a>
+            
+            <a href="{% url 'grade_dashboard' %}" class="glass-btn small-btn">📊 {% trans "لوحة الصف" %}</a>
+        </div>
 
-    <form method="get" class="search-bar">
-        <input type="text" name="q" placeholder="🔎 {% trans 'البحث عن اسم الطالب...' %}" value="{{ request.GET.q }}">
-        <button type="submit">{% trans "بحث" %}</button>
-    </form>
+        <form method="get" class="search-bar">
+            <input type="text" name="q" placeholder="🔎 {% trans 'البحث عن اسم الطالب...' %}" value="{{ request.GET.q }}">
+            <button type="submit">{% trans "بحث" %}</button>
+        </form>
 
-    <div class="student-list">
-        {% for student in students %}
-            {# FIXED: student_profile uses 'id' from your views.py/urls.py #}
-            <a href="{% url 'student_profile' student.id %}" class="student-card">
-                <div class="student-info">
-                    <span class="student-name">{{ student.name }}</span>
-                    <span class="student-status">
-                        {% if student.status %}{{ student.status }}{% else %}{% trans "منتظم" %}{% endif %}
-                    </span>
+        <div class="student-list">
+            {% for student in students %}
+                <a href="{% url 'student_profile' student.id %}" class="student-card">
+                    <div class="student-info">
+                        <strong class="student-name">{{ student.name }}</strong>
+                        <span class="student-status">{{ student.status }}</span>
+                    </div>
+
+                    <div class="student-grade">
+                        {{ student.total_grade|default:"0" }}%
+                    </div>
+                </a>
+            {% empty %}
+                <div class="glass-panel" style="text-align:center; padding: 40px; margin-top: 20px;">
+                    <p>{% trans "لا يوجد طلاب حالياً أو لم يتم العثور على نتائج للبحث." %}</p>
                 </div>
+            {% endfor %}
+        </div>
 
-                <div class="student-grade">
-                    {{ student.total_grade|default:"0" }}%
-                </div>
-            </a>
-        {% empty %}
-            <div class="glass-panel" style="text-align:center; margin-top: 20px;">
-                <p>{% trans "لا يوجد نتائج لهذا البحث" %}</p>
-            </div>
-        {% endfor %}
-    </div>
-
-    <div style="text-align: center; margin-top: 40px;">
-        <a href="{% url 'home' %}" class="glass-btn small-btn">⬅ {% trans "العودة إلى الرئيسية" %}</a>
-    </div>
-</main>
+        <div style="text-align: center; margin-top: 50px;">
+            <a href="{% url 'home' %}" class="glass-btn small-btn">⬅ {% trans "العودة إلى الرئيسية" %}</a>
+        </div>
+    </main>
 
 </body>
 </html>
