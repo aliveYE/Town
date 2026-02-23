@@ -776,3 +776,22 @@ main, .dashboard-content, .profile-container {
   from { opacity: 0; transform: translateY(20px); }
   to { opacity: 1; transform: translateY(0); }
 }
+[dir="rtl"] .sidebar {
+  border-right: none;
+  border-left: 1px solid var(--glass-border);
+}
+
+[dir="rtl"] .sidebar a:hover {
+  transform: translateX(-8px); /* Moves left instead of right */
+}
+
+[dir="rtl"] .sidebar a::before {
+  left: auto;
+  right: 0; /* Bar appears on the right side in RTL */
+}
+
+[dir="rtl"] .student-status::before {
+  margin-left: 6px;
+  margin-right: 0;
+}
+
