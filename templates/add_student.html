@@ -3,26 +3,45 @@
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% trans "إضافة طالب" %}</title>
 
-    <!-- CSS -->
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
 </head>
 
 <body class="page-bg">
 
-<h1 class="page-title">➕ {% trans "إضافة طالب جديد" %}</h1>
+<main class="container">
+    <h1 class="page-title">➕ {% trans "إضافة طالب جديد" %}</h1>
 
-<form method="post" enctype="multipart/form-data" class="form-card">
-    {% csrf_token %}
+    <form method="post" enctype="multipart/form-data" class="form-card">
+        {% csrf_token %}
 
-    <!-- Django Form -->
-    {{ form.as_p }}
+        {% for field in form %}
+            <div class="field-group" style="margin-bottom: 20px; text-align: right;">
+                <label for="{{ field.id_for_label }}" style="display: block; margin-bottom: 8px; color: var(--accent-gold);">
+                    {{ field.label }}
+                </label>
+                
+                {{ field }}
 
-    <button type="submit" class="glass-btn">💾 {% trans "حفظ" %}</button>
-</form>
+                {% if field.errors %}
+                    <div class="glow-text" style="font-size: 0.8rem; margin-top: 5px;">
+                        {{ field.errors.0 }}
+                    </div>
+                {% endif %}
+            </div>
+        {% endfor %}
 
-<a href="{% url 'students' %}" class="back-btn">⬅ {% trans "العودة" %}</a>
+        <div style="text-align: center; margin-top: 30px;">
+            <button type="submit" class="glass-btn">💾 {% trans "حفظ بيانات الطالب" %}</button>
+        </div>
+    </form>
+
+    <div style="text-align: center; margin-top: 30px;">
+        <a href="{% url 'students' %}" class="glass-btn small-btn">⬅ {% trans "العودة لقائمة الطلاب" %}</a>
+    </div>
+</main>
 
 </body>
 </html>
