@@ -1,22 +1,27 @@
-{% load i18n %}
+{% load i18n static %}
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>{% trans "مدرسة التعاون النموذجية" %}</title>
-  {% load static %}
-<link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+
 <body>
 
   <!-- Hero Section -->
   <header class="hero hero-bg">
- 
+
     <div class="hero-overlay"></div>
-    
 
     <div class="hero-content">
-     <img src="/static/images/school.jpg" class="school-img">
+
+      <!-- Image -->
+      <img src="{% static 'images/school.jpg' %}" class="school-img" alt="{% trans 'صورة المدرسة' %}">
+
       <h1 class="hero-title">
         {% trans "مدرسة التعاون النموذجية ترحب بكم" %}
       </h1>
@@ -27,21 +32,18 @@
 
       <!-- Navigation Buttons -->
       <nav class="menu-buttons" aria-label="{% trans 'القائمة الرئيسية' %}">
-        <a href="/grade/" class="glass-btn" aria-label="{% trans 'لوحة الصف' %}">📊 {% trans "لوحة الصف" %}</a>
-        <a href="/students/" class="glass-btn" aria-label="{% trans 'الطلاب' %}">👨‍🎓 {% trans "الطلاب" %}</a>
-        <a href="/lessons/" class="glass-btn" aria-label="{% trans 'الدروس' %}">📚 {% trans "الدروس" %}</a>
-        <a href="/add-student/" class="glass-btn" aria-label="{% trans 'إضافة طالب' %}">➕ {% trans "إضافة طالب" %}</a>
+        <a href="{% url 'gradeboard' %}" class="glass-btn">📊 {% trans "لوحة الصف" %}</a>
+        <a href="{% url 'students' %}" class="glass-btn">👨‍🎓 {% trans "الطلاب" %}</a>
+        <a href="{% url 'lessons' %}" class="glass-btn">📚 {% trans "الدروس" %}</a>
+        <a href="{% url 'add_student' %}" class="glass-btn">➕ {% trans "إضافة طالب" %}</a>
       </nav>
+
     </div>
   </header>
 
-  <!-- Main Content Placeholder -->
-  <main>
-    <!-- Future sections: students, lessons, dashboard -->
-  </main>
+  <main></main>
 
-  <!-- Footer -->
-  <footer class="glass-panel" role="contentinfo">
+  <footer class="glass-panel">
     <p class="glow-text">
       {% trans "© 2026 مدرسة التعاون النموذجية - جميع الحقوق محفوظة" %}
     </p>
