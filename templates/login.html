@@ -1,8 +1,29 @@
-<h1>Teacher Login</h1>
+{% load static i18n %}
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <title>{% trans "تسجيل دخول المعلم" %}</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+
+<body class="page-bg">
+
+<h1 class="page-title">{% trans "تسجيل دخول المعلم" %}</h1>
 
 <form method="post" class="form-card">
     {% csrf_token %}
-    <input name="username" placeholder="Username"><br><br>
-    <input type="password" name="password" placeholder="Password"><br><br>
-    <button class="btn">Login</button>
+    
+    <label for="username">{% trans "اسم المستخدم" %}</label>
+    <input id="username" name="username" type="text" placeholder="{% trans 'اسم المستخدم' %}" required>
+    
+    <label for="password">{% trans "كلمة المرور" %}</label>
+    <input id="password" name="password" type="password" placeholder="{% trans 'كلمة المرور' %}" required>
+    
+    <button type="submit" class="glass-btn">{% trans "تسجيل الدخول" %}</button>
 </form>
+
+<a href="{% url 'home' %}" class="back-btn">⬅ {% trans "العودة للرئيسية" %}</a>
+
+</body>
+</html>
