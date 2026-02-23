@@ -5,8 +5,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>{% trans "مدرسة التعاون النموذجية" %}</title>
-  <link rel="stylesheet" href="/static/css/style.css">
-</head>
+  {% load static %}
+<link rel="stylesheet" href="{% static 'css/style.css' %}">
 <body>
 
   <!-- Hero Section -->
